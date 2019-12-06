@@ -1,0 +1,59 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion ANDROID_COMPILE_SDK_VERSION as int
+
+    defaultConfig {
+        minSdkVersion ANDROID_MIN_SDK_VERSION as int
+        targetSdkVersion ANDROID_TARGET_SDK_VERSION as int
+        versionCode VERSION_CODE as int
+        versionName VERSION_NAME
+//        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+//    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // test start
+    // Junit
+    testImplementation test_implement.junit,
+            // Mockito
+            test_implement.mockito_core,
+            // Robolectric + Support v4
+            test_implement.robolectric,
+            test_implement.robolectric_shadows_support_v4,
+            // if multiDexEnabled true open it
+//            test_implement.robolectric_shadows_multidex,
+            // EasyMock
+            test_implement.easymock,
+            // PowerMock
+            test_implement.powermock_core,
+            test_implement.powermock_module_junit4,
+            // PowerMock + EasyMock extension
+            test_implement.powermock_api_easymock
+
+    //    androidTestImplementation android_test_implement.robotium_solo
+
+    androidTestImplementation android_test_implement.com_android_support_test_runner,
+            android_test_implement.com_android_support_test_espresso_core
+    // test end
+
+    api depends_com_android_support.appcompat_7
+}

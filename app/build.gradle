@@ -1,0 +1,80 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+//apply plugin: 'com.jakewharton.butterknife'
+
+android {
+    compileSdkVersion ANDROID_COMPILE_SDK_VERSION as int
+    defaultConfig {
+        applicationId "com.sinlov.aubnig.demo.needchange"
+        minSdkVersion ANDROID_MIN_SDK_VERSION as int
+        targetSdkVersion ANDROID_TARGET_SDK_VERSION as int
+        versionCode VERSION_CODE as int
+        versionName VERSION_NAME
+//        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    lintOptions {
+//        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+        checkReleaseBuilds false
+    }
+
+    signingConfigs {
+        keyBuild {
+            storeFile file(project.hasProperty('KEY_BUILD_STOREFILE') ? KEY_BUILD_STOREFILE : '../z-keystore/debug.keystore')
+            storePassword project.hasProperty('KEY_BUILD_STOREPASS') ? KEY_BUILD_STOREPASS : 'android'
+            keyAlias project.hasProperty('KEY_BUILD_KEYALIAS') ? KEY_BUILD_KEYALIAS : 'android'
+            keyPassword project.hasProperty('KEY_BUILD_KEYPASS') ? KEY_BUILD_KEYPASS : 'android'
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.keyBuild
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.keyBuild
+        }
+    }
+}
+
+dependencies {
+//    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // test start
+    testImplementation test_implement.junit
+
+    androidTestImplementation android_test_depends_androidx.test_ext,
+            android_test_depends_androidx.espresso_core
+    // test end
+
+    // implementation depends_com_android_support.appcompat_7,
+    //         depends_com_android_support.constraint_layout
+    api depends.kotlin_stdlib_jdk7
+    // androidx
+    api depends_androidx.appcompat,
+       depends_androidx.core_ktx,
+       depends_androidx.constraintlayout,
+       depends_androidx.navigation_fragment,
+       depends_androidx.navigation_ui,
+       depends_androidx.lifecycle_extensions,
+       depends_androidx.navigation_fragment_ktx,
+       depends_androidx.navigation_ui_ktx
+
+//    annotationProcessor annotation_processor.butterknife_compiler
+//    api depends.butterknife
+}
+repositories {
+    mavenCentral()
+}

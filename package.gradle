@@ -1,0 +1,87 @@
+subprojects {
+    apply plugin: 'maven'
+    apply plugin: 'idea'
+
+    ext {
+        gradle_version = '3.0.0'
+        support_version = '26.1.0'
+        kotlin_version = '1.3.50'
+
+        public_repo = [
+                aliyun    : 'http://maven.aliyun.com/nexus/content/groups/public/',
+                jitpack_io: 'https://jitpack.io',
+        ]
+
+        test_implement = [
+                junit                         : 'junit:junit:4.12',
+                mockito_core                  : 'org.mockito:mockito-core:2.7.22',
+                robolectric                   : 'org.robolectric:robolectric:3.6.1',
+                robolectric_shadows_multidex  : 'org.robolectric:shadows-multidex:3.6.1',
+                robolectric_shadows_support_v4: 'org.robolectric:shadows-support-v4:3.3.2',
+                easymock                      : 'org.easymock:easymock:3.4',
+                powermock_core                : 'org.powermock:powermock-core:1.6.5',
+                powermock_module_junit4       : 'org.powermock:powermock-module-junit4:1.6.5',
+                powermock_api_easymock        : 'org.powermock:powermock-api-easymock:1.6.5',
+                okhttp3_logging_interceptor   : 'com.squareup.okhttp3:logging-interceptor:3.8.0@jar',
+        ]
+        android_test_implement = [
+                com_android_support_test_runner       : 'com.android.support.test:runner:1.0.1',
+                com_android_support_test_espresso_core: 'com.android.support.test.espresso:espresso-core:3.0.1',
+                robotium_solo                         : 'com.jayway.android.robotium:robotium-solo:5.5.4'
+        ]
+
+        android_test_depends_androidx =[
+                test_ext:      'androidx.test.ext:junit:1.1.0',
+                espresso_core: 'androidx.test.espresso:espresso-core:3.1.1',
+        ]
+
+        annotation_processor = [
+                arouter_compiler    : 'com.alibaba:arouter-compiler:1.1.1',
+                butterknife_compiler: 'com.jakewharton:butterknife-compiler:9.0.0-rc2',
+        ]
+
+        depends = [
+                kotlin_stdlib_jre7: "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version",
+                kotlin_stdlib_jdk7: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+                butterknife       : 'com.jakewharton:butterknife:9.0.0-rc2',
+                eventbus          : 'de.greenrobot:eventbus:3.1.1',
+        ]
+
+        depends_androidx = [
+                appcompat: 'androidx.appcompat:appcompat:1.0.2',
+                core_ktx: 'androidx.core:core-ktx:1.0.2',
+                navigation_fragment: 'androidx.navigation:navigation-fragment:2.0.0',
+                navigation_ui: 'androidx.navigation:navigation-ui:2.0.0',
+                lifecycle_extensions: 'androidx.lifecycle:lifecycle-extensions:2.0.0',
+                navigation_fragment_ktx: 'androidx.navigation:navigation-fragment-ktx:2.0.0',
+                navigation_ui_ktx: 'androidx.navigation:navigation-ui-ktx:2.0.0',
+                constraintlayout: 'androidx.constraintlayout:constraintlayout:1.1.3',
+        ]
+
+        depends_com_android_support = [
+                support_annotations: "com.android.support:support-annotations:$support_version",
+                support_v4         : "com.android.support:support-v4:$support_version",
+                support_core_ui    : "com.android.support:support-core-ui:$support_version",
+                appcompat_7        : "com.android.support:appcompat-v7:$support_version",
+                recyclerview_v7    : "com.android.support:recyclerview-v7:$support_version",
+                cardview_v7        : "com.android.support:cardview-v7:$support_version",
+                design             : "com.android.support:design:$support_version",
+                multidex           : 'com.android.support:multidex:1.0.1',
+                constraint_layout  : 'com.android.support.constraint:constraint-layout:1.0.2',
+        ]
+
+        analytics = [
+                umeng: 'com.umeng.analytics:analytics:6.1.2',
+        ]
+        provided_depends = [
+        ]
+
+        component_depends = [
+        ]
+
+        res_provided = [
+        ]
+        res_depends = [
+        ]
+    }
+}
